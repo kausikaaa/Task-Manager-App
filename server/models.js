@@ -1,0 +1,17 @@
+import mongoose from "mongoose"
+
+const taskSchema = new mongoose.Schema ({
+    title:{
+    type : String,
+    required : [true, "please add a title"],
+},
+    completed:{
+    type:Boolean,
+    default:false,
+    },
+},
+{timestramps : true }
+);
+
+const Task= mongoose.model("Task",taskSchema);
+export default Task;
