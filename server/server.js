@@ -3,20 +3,19 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import taskRoutes from "./routes/taskRoutes.js";
 import { errorHandler } from "./middleware/errorMiddleware.js";
+import cors from "cors";   
 
 dotenv.config();
 const app = express();
 
-// Middleware to parse JSON
 app.use(express.json());
 
-// Connect to DB
+app.use(cors({ origin: "http://localhost:5173" }));
+
 connectDB();
 
-// Routes
 app.use("/api/tasks", taskRoutes);
 
-// Error handler
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
